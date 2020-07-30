@@ -7,6 +7,7 @@ const datePos = document.getElementById("date-moment");
 datePos.prepend(dateNow.format("dddd D MMMM YYYY"));
 
 let filterCategory = "toutes";
+let compteur = 0;
 
 console.log("toutes les categories", entries);
 console.log("categories uniques", uniqueCategory);
@@ -34,13 +35,17 @@ function insertVeilles() {
         </div>
       </div>`;
     ulEl.append(li);
+    compteur += 1;
+    if (compteur % 2 == 0) {
+      li.classList.add("bg-light");
+    }
   }
   gridContainer.innerHTML = "";
   gridContainer.append(ulEl);
 }
 
 insertVeilles();
-/*
+
 function activateFilterByCategory() {
   // repérer select
   // boucle pour parcourir uniqueCategory
@@ -51,18 +56,17 @@ function activateFilterByCategory() {
   console.log(selectEL);
   for (let tag of uniqueCategory) {
     const option = document.createElement("option");
-    option.textContent = category;
-    option.value = category;
+    option.textContent = tag;
+    option.value = tag;
     console.log(option);
     selectEL.append(option);
   }
   selectEL.addEventListener("change", () => {
     console.dir(selectEL);
-    filterEntries = selectEL.value;
-    insertGradients();
-    console.log(filterEntries);
+    filterCategory = selectEL.value;
+    insertVeilles();
+    console.log(filterCategory);
   });
 }
 
 activateFilterByCategory();
-*/
