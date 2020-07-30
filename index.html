@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Alyra Veilles Challenge</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
+      integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body class="container px-0">
+    <header class="text-center">
+      <h1 class="m-5">Veilles EthersJS</h1>
+      <p class="text-light bg-primary pb-3 pt-4 rounded">
+        Bonjour ! Nous sommes le <span id="date-moment"></span> 😊
+      </p>
+    </header>
+    <main class="container p-0">
+      <div id="main-content" class="row">
+        <div class="input-group my-3 col-6">
+          <div class="input-group-text">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              value=""
+              aria-label="Checkbox pour les veilles à venir"
+            />
+          </div>
+          <span class="input-group-text bg-light"
+            >Afficher uniquement des veilles à venir</span
+          >
+        </div>
+        <div class="input-group my-3 col-6">
+          <label class="input-group-text" for="inputSort">Trier</label>
+          <select class="form-select" id="inputSort">
+            <option value="trie-date">par date</option>
+            <option value="trie-atoz">de A à Z</option>
+            <option value="trie-za">de Z à A</option>
+          </select>
+        </div>
+        <div class="input-group my-3 col-6">
+          <label class="input-group-text" for="inputClassify">Catégories</label>
+          <select class="form-select" id="inputClassify"> </select>
+        </div>
+        <section id="section-content"></section>
+      </div>
+    </main>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
+    <script src="https://momentjs.com/downloads/moment-with-locales.min.js"></script>
+    <script src="js/veilles.js"></script>
+    <script src="js/script.js"></script>
+  </body>
+</html>
