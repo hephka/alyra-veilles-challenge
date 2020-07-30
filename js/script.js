@@ -27,13 +27,12 @@ function insertVeilles() {
   for (let veille of filterEntries) {
     console.log(veille);
     const li = document.createElement("li");
-    li.innerHTML = `<div class="card p-3 mb-3 shadow">
-    <div class="card-body">
-        <h2 class="card-title mb-2">${veille.subject}</h2>
-        <div class="badge bg-primary p-1 mb-2">${veille.category}</div>
-        <p class="card-text">${veille.date}</p>
-        </div>
-      </div>`;
+    li.classList.add("card", "shadow-sm", "p-3", "mb-3");
+    li.innerHTML = `<div class="card-body">
+      <h2 class="card-title mb-2">${veille.subject}</h2>
+      <div class="badge bg-primary p-1 mb-2">${veille.category}</div>
+      <p class="card-text">${veille.date}</p>
+  </div>`;
     ulEl.append(li);
     compteur += 1;
     if (compteur % 2 == 0) {
