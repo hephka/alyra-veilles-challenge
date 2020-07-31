@@ -85,8 +85,8 @@ const entries = [
   { subject: "Social Blockchain", date: "30/09/2020", category: "Blockchain" },
 ];
 
+// fonction qui retourne la liste des categories uniques
 function allCategory(list) {
-  /* retourner la liste des categories uniques */
   let listTotal = [];
   for (let element of list) {
     if ("category" in element) {
@@ -104,3 +104,28 @@ function allCategory(list) {
 }
 
 const uniqueCategory = allCategory(entries);
+
+// fonction qui retourne la liste des dates
+function allDates(list) {
+  let listDates = [];
+  for (let element of list) {
+    if ("date" in element) {
+      listDates = listDates.concat(element.date);
+    }
+  }
+  return listDates;
+}
+
+// fonction qui retourne la liste des sujets
+function allSubjects(list) {
+  let listSubjects = [];
+  for (let element of list) {
+    if ("subject" in element) {
+      listSubjects = listSubjects.concat(element.subject);
+    }
+  }
+  return listSubjects;
+}
+
+const dateEntries = allDates(entries);
+const subjectEntries = allSubjects(entries);
