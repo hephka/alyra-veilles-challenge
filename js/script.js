@@ -118,45 +118,67 @@ function entriesToCome(list) {
   return listEntriesToCome;
 }
 
-const veillesAvenir = entriesToCome(entries);
-const allEntries = insertVeilles(entries);
-console.log(veillesAvenir);
-
-// fonction Checkbox
-function activateFilterEntriesToCome() {
-  console.log(boxEl.checked);
-  const boxEl = document.getElementById("check-btn");
-  boxEl.addEventListener("change", () => {
-    if (boxEl.checked) {
-      return veillesAvenir;
-    } else {
-      return true;
+// fonction permettant d'afficher une liste de toutes les cards de veilles à venir
+// Poosibilité de simplifier le code avec insertVeilles() - A voir
+function insertVeillesAvenir() {
+  const ulEl = document.createElement("ul");
+  const dateFormat = "DD/MM/YYYY";
+  // const dateFormat = moment(veilles.date, "DD/MM/YYYY").locale("fr").format("dddd DD/MM/YYYY");
+  // const dateFormat = moment(veille.date, "DD/MM/YYYY")
+  const gridContainer = document.getElementById("section-content");
+  ulEl.classList.add("list-unstyled");
+  //const filterV = entries.filter((el) => {
+  let listVeillesavenir = [];
+  entries.forEach((el) => {
+    if (moment(el.date, dateFormat) > moment(dateNow, dateFormat)) {
+      listVeillesavenir.push(el);
     }
   });
-  insertVeilles();
+  const filterV = listVeillesavenir;
+
+  let compteur = 0;
+  for (let veille of filterV) {
+    console.log(veille);
+    const dateFormat1 = moment(veille.date, "DD/MM/YYYY")
+      .locale("fr")
+      .format("dddd DD/MM/YYYY");
+    //const dateFormat = "dddd DD/MM/YYYY";
+    // const dateFormat = moment(veille.date, "DD/MM/YYYY")
+    // .locale("fr")
+    // .format("dddd DD/MM/YYYY");
+    const li = document.createElement("li");
+    li.classList.add("card", "shadow-sm", "p-3", "mb-3");
+    li.innerHTML = `<div class="card-body">
+      <h2 class="card-title mb-2">${veille.subject}</h2>
+      <div class="badge bg-primary p-1 mb-2">${veille.category}</div>
+      <p class="card-text">${dateFormat1}</p>
+  </div>`;
+
+    ulEl.append(li);
+    compteur += 1;
+    if (compteur % 2 == 0) {
+      li.classList.add("bg-light");
+    }
+  }
+  gridContainer.innerHTML = "";
+  gridContainer.append(ulEl);
 }
 
-/*      FUN      */
-/*
-let mode = "light";
-const modeBtn = document.getElementById("mode-btn"); // null
-
-if (modeBtn) {
-  modeBtn.addEventListener("click", () => {
-    const cards = document.getElementsByClassName("card");
-    console.dir(cards);
-    if (document.body.classList.contains("bg-dark")) {
-      // enlever bg-dark et text-light
-      // mettre en place mode light
-      document.body.classList.remove("bg-dark", "text-light");
-      document.cards.classList.remove("bg-dark");
-      mode = "light";
+// fonction pour activer le click sur checkbox
+function activateFilterVeillesAvenir() {
+  // repérer select
+  // boucle pour parcourir uniqueCategory
+  const boxEL = document.getElementById("check-btn");
+  console.log(boxEL.value);
+  console.log(boxEL.checked);
+  boxEL.addEventListener("click", () => {
+    if (boxEL.checked) {
+      console.log(boxEL.checked);
+      insertVeillesAvenir();
     } else {
-      document.body.classList.add("bg-dark", "text-light");
-      document.cards.classList.add("bg-dark");
-      mode = "dark";
+      insertVeilles();
     }
-    localStorage.setItem("mode", mode);
   });
 }
-*/
+
+activateFilterVeillesAvenir();

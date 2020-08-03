@@ -14,15 +14,6 @@
   </head>
   <body class="container px-0">
     <header class="text-center">
-      <!--
-      <button
-        id="mode-btn"
-        type="button"
-        class="btn btn-sm btn-outline-primary m-3"
-      >
-        Changer mode
-      </button>
-    -->
       <h1 class="p-5">Veilles EthersJS</h1>
       <p class="text-light bg-primary pb-3 pt-4 rounded">
         Bonjour ! Nous sommes le <span id="date-moment"></span> 😊
@@ -56,7 +47,7 @@
               id="inputSort"
               onchange="selectOption(this)"
             >
-              <option value="sort-date" checked>par date</option>
+              <option value="sort-date" selected>par date</option>
               <option value="sort-az">de A à Z</option>
               <option value="sort-za">de Z à A</option>
             </select>
@@ -81,4 +72,10 @@
     <script src="js/veilles.js"></script>
     <script src="js/script.js"></script>
   </body>
+  <footer>
+    <p class="text-center bg-primary rounded p-2 text-light">
+      &copy; Développer avec &hearts; par Romane, Eddy, Franck, Loannis, et Théo
+      !
+    </p>
+  </footer>
 </html>
