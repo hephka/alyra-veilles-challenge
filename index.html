@@ -14,18 +14,28 @@
   </head>
   <body class="container px-0">
     <header class="text-center">
-      <h1 class="m-5">Veilles EthersJS</h1>
+      <!--
+      <button
+        id="mode-btn"
+        type="button"
+        class="btn btn-sm btn-outline-primary m-3"
+      >
+        Changer mode
+      </button>
+    -->
+      <h1 class="p-5">Veilles EthersJS</h1>
       <p class="text-light bg-primary pb-3 pt-4 rounded">
         Bonjour ! Nous sommes le <span id="date-moment"></span> 😊
       </p>
     </header>
-    <main class="container">
-      <div class="row row-cols-2">
+    <main class="container p-0">
+      <div class="row row-cols-1 row-cols-sm-2">
         <!-- CheckBox -->
         <div id="div-checkbox" class="col mb-3">
           <div class="input-group">
             <div class="input-group-text">
               <input
+                id="check-btn"
                 class="form-check-input"
                 type="checkbox"
                 value=""

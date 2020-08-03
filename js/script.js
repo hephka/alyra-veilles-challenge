@@ -29,11 +29,14 @@ function insertVeilles() {
   for (let veille of filterEntries) {
     console.log(veille);
     const li = document.createElement("li");
+    const dateFormat = moment(veille.date, "DD/MM/YYYY")
+      .locale("fr")
+      .format("dddd DD/MM/YYYY");
     li.classList.add("card", "shadow-sm", "p-3", "mb-3");
     li.innerHTML = `<div class="card-body">
       <h2 class="card-title mb-2">${veille.subject}</h2>
       <div class="badge bg-primary p-1 mb-2">${veille.category}</div>
-      <p class="card-text">${veille.date}</p>
+      <p class="card-text"><time datetime="${veille.date}">${dateFormat}</time></p>
   </div>`;
     ulEl.append(li);
     // boucle permettant l'alternance de bg des veilles
@@ -102,3 +105,58 @@ function selectOption(val) {
   }
   insertVeilles();
 }
+
+// fonction qui retourne un array des veilles à venir
+function entriesToCome(list) {
+  const dateFormat = "DD/MM/YYYY";
+  let listEntriesToCome = [];
+  list.forEach((el) => {
+    if (moment(el.date, dateFormat) > moment(dateNow, dateFormat)) {
+      listEntriesToCome.push(el);
+    }
+  });
+  return listEntriesToCome;
+}
+
+const veillesAvenir = entriesToCome(entries);
+const allEntries = insertVeilles(entries);
+console.log(veillesAvenir);
+
+// fonction Checkbox
+function activateFilterEntriesToCome() {
+  console.log(boxEl.checked);
+  const boxEl = document.getElementById("check-btn");
+  boxEl.addEventListener("change", () => {
+    if (boxEl.checked) {
+      return veillesAvenir;
+    } else {
+      return true;
+    }
+  });
+  insertVeilles();
+}
+
+/*      FUN      */
+/*
+let mode = "light";
+const modeBtn = document.getElementById("mode-btn"); // null
+
+if (modeBtn) {
+  modeBtn.addEventListener("click", () => {
+    const cards = document.getElementsByClassName("card");
+    console.dir(cards);
+    if (document.body.classList.contains("bg-dark")) {
+      // enlever bg-dark et text-light
+      // mettre en place mode light
+      document.body.classList.remove("bg-dark", "text-light");
+      document.cards.classList.remove("bg-dark");
+      mode = "light";
+    } else {
+      document.body.classList.add("bg-dark", "text-light");
+      document.cards.classList.add("bg-dark");
+      mode = "dark";
+    }
+    localStorage.setItem("mode", mode);
+  });
+}
+*/
